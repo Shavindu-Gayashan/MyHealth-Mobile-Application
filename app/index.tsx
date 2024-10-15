@@ -1,43 +1,66 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button, Image, TextInput } from 'react-native';
-
+import { Text, View, StyleSheet, Button, Image, TextInput, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
+  
+  const handleLogin = () => {
+    alert('Username: ${username}, Password: ${password}');
+  }
+  
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['rgba(217, 217, 217, 0)', 'rgba(54, 178, 178, 0.78)']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1.2, y: 1.2 }}
+      style={styles.container}
+    >
+      <View style={styles.container}>
 
-      <View>
-        <Image
-          style={styles.logo}
-          source={require('../assets/images/logo.png')}
-        />
-        <Text style = {styles.name}>MyHealth</Text>
+        <View>
+          <Image
+            style={styles.logo}
+            source={require('../assets/images/logo.png')}
+          />
+          <Text style={styles.name}>MyHealth</Text>
+        </View>
+        <View>
+          <Text style={styles.login}>Login</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            value=''
+            onChangeText={(text) => setUsername(text)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value=''
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry
+          />
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+
+        </View>
+        <View>
+          <Text style={styles.fogotPassword}>Fogot Password</Text>
+        </View>
+
       </View>
-      <View>
-        <Text style={styles.login}>Login</Text>
-        <TextInput 
-          style={styles.input}
-          placeholder="Username" 
-        />
-        <TextInput 
-          style={styles.input}
-          placeholder="Password" 
-        />
-      </View>
-      <View style={styles.content}>
-        <Text style={styles.contentText}>This is the main content area.</Text>
-        <Button title="Click Me" onPress={() => alert('Button Pressed!')} />
-      </View>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between', // Adjust to your needs
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
   },
   header: {
     width: '100%',
@@ -93,5 +116,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 50,
     marginBottom: 20,
+  },
+  button: {
+    width: 240,
+    height: 40,
+    backgroundColor: '#2B78E4',
+    color: '#ffffff',
+    borderRadius: 20,
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 10,
+    fontWeight: 'bold',
+  },
+  fogotPassword: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20
   }
 });
