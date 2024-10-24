@@ -1,13 +1,24 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Button, Image, TextInput, TouchableOpacity,TouchableHighlight,TouchableNativeFeedback,TouchableWithoutFeedback,Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
-  
+
   const handleLogin = () => {
-    alert('Username: ${username}, Password: ${password}');
+    console.log('You tapped Login button!');
   }
-  
+
+  const handleSignUp = () => {
+    console.log('You tapped Sign Up button!');
+  }
+
+  const onPressButton = () => {
+    console.log('You tapped on press button!');
+  }
+
+  const onLongPressButton = () => {
+    console.log('You tapped long  button!');
+  }
   return (
     <LinearGradient
       colors={['rgba(217, 217, 217, 0)', 'rgba(54, 178, 178, 0.78)']}
@@ -16,7 +27,6 @@ export default function App() {
       style={styles.container}
     >
       <View style={styles.container}>
-
         <View>
           <Image
             style={styles.logo}
@@ -29,21 +39,17 @@ export default function App() {
           <TextInput
             style={styles.input}
             placeholder="Username"
-            value=''
-            onChangeText={(text) => setUsername(text)}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
-            value=''
-            onChangeText={(text) => setPassword(text)}
             secureTextEntry
           />
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleSignUp}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
 
@@ -51,7 +57,6 @@ export default function App() {
         <View>
           <Text style={styles.fogotPassword}>Fogot Password</Text>
         </View>
-
       </View>
     </LinearGradient>
   );
@@ -137,6 +142,10 @@ const styles = StyleSheet.create({
   fogotPassword: {
     fontSize: 16,
     textAlign: 'center',
-    marginTop: 20
+    marginTop: 20,
+  },
+  top: {
+    fontSize: 30,
+    fontWeight: 'bold',
   }
 });
