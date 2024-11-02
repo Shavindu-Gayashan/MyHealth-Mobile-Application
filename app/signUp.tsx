@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button, Image, TextInput, TouchableOpacity,TouchableHighlight,TouchableNativeFeedback,TouchableWithoutFeedback,Platform } from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
   const handleSignUp = () => {
     console.log('You tapped Sign Up button!');
   }
-  
+
   return (
     <LinearGradient
       colors={['rgba(217, 217, 217, 0)', 'rgba(54, 178, 178, 0.78)']}
@@ -31,11 +31,20 @@ export default function App() {
           <Text style={styles.login}>Login</Text>
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="Name"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
+            secureTextEntry
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Confirm Password"
             secureTextEntry
           />
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
