@@ -17,6 +17,15 @@ export default function App() {
         console.log('Sign Up Pressed');
     }
 
+    const handleLoginWithGoogle = () => {
+        console.log('Login with Google Pressed');
+    }
+
+
+    const handleLoginWithFacebook = () => {
+        console.log('Login with Facebook Pressed');
+    }
+
     return (
         <LinearGradient
             colors={['rgba(217, 217, 217, 0)', 'rgba(54, 178, 178, 0.78)']}
@@ -62,14 +71,14 @@ export default function App() {
                     <Text style={styles.fogotPassword}>Fogot Password</Text>
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.socialButton} onPress={handleSignUp}>
+                    <TouchableOpacity style={styles.socialButton} onPress={handleLoginWithGoogle}>
                         <Image
                             style={styles.socialIcon}
                             source={require('../assets/images/google.png')}
                         />
                         <Text style={styles.socialButtonText}>Login with Google</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.socialButton} onPress={handleSignUp}>
+                    <TouchableOpacity style={styles.socialButton} onPress={handleLoginWithFacebook}>
                         <Image
                             style={styles.socialIcon}
                             source={require('../assets/images/facebook.png')}
