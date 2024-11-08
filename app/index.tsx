@@ -32,7 +32,7 @@ export default function App() {
                     />
                 </View>
                 <View>
-                    <Text style={styles.name}>Eazy Shopping</Text>
+                    <Text style={styles.name}>MyHealth</Text>
                 </View>
                 <View>
                     <Text style={styles.login}>Login</Text>
