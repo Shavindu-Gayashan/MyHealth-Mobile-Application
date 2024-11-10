@@ -32,12 +32,7 @@ This is Mobile app project created with [`create-expo-app`](https://www.npmjs.co
    ```
 2. Use the Expo Go app on your mobile device to scan the QR code and run the app.
 
-### Building the App
 
-To create a production build of the app, run:
-```sh
-expo build
-```
 
 ### Contributing
 
