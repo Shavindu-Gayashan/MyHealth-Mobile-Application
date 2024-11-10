@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Button, Image, TextInput, TouchableOpacity, TouchableHighlight, TouchableNativeFeedback, TouchableWithoutFeedback, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import CheckBox from 'expo-checkbox';
 import { useNavigation } from '@react-navigation/native';
+
 
 export default function App() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isSelected, setSelection] = useState(false);
     const navigation = useNavigation<any>();
 
     const handleLogin = () => {
@@ -13,12 +16,11 @@ export default function App() {
         console.log('Username:', username);
         setUsername('');
         setPassword('');
-        navigation.navigate('dashboard');
     }
 
     const handleSignUp = () => {
         console.log('Sign Up Pressed');
-        navigation.navigate('signup');
+        navigation.navigate('index');
     }
 
     const handleLoginWithGoogle = () => {
@@ -48,13 +50,20 @@ export default function App() {
                     <Text style={styles.name}>MyHealth</Text>
                 </View>
                 <View>
-                    <Text style={styles.login}>Login</Text>
+                    <Text style={styles.signup}>Sign Up</Text>
                     <TextInput
                         style={styles.input}
-                        placeholder="Username"
+                        placeholder="Name"
                         value={username}
                         onChangeText={setUsername}
                     />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email"
+                        value={username}
+                        onChangeText={setUsername}
+                    />
+
                     <TextInput
                         style={styles.input}
                         placeholder="Password"
@@ -62,9 +71,24 @@ export default function App() {
                         onChangeText={setPassword}
                         secureTextEntry
                     />
-                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                        <Text style={styles.buttonTextLight}>Login</Text>
-                    </TouchableOpacity>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Confirm Password"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                    />
+                    <View style={styles.terms}>
+                        <CheckBox 
+                            style={styles.termsCheckbox}
+                            value={isSelected}
+                            onValueChange={setSelection}
+                        />
+                        <Text style={styles.termsText}>
+                            agree with terms and conditions
+                        </Text>
+                    </View>
+
 
                     <TouchableOpacity style={styles.button} onPress={handleSignUp}>
                         <Text style={styles.buttonTextLight}>Sign Up</Text>
@@ -131,7 +155,7 @@ const styles = StyleSheet.create({
     logo: {
         width: 120,
         height: 120,
-        marginTop: 60,
+        marginTop: 40,
     },
     name: {
         fontSize: 28,
@@ -140,18 +164,18 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        margin: 12,
+        margin: 10,
         backgroundColor: '#ffffff',
         borderRadius: 5,
         padding: 10,
         width: 300,
         fontSize: 16,
     },
-    login: {
+    signup: {
         fontSize: 24,
         fontWeight: "bold",
         textAlign: 'center',
-        marginTop: 50,
+        marginTop: 40,
         marginBottom: 20,
     },
     button: {
@@ -200,12 +224,24 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
     },
-    socialIcon:{
-        flex : 1,
+    socialIcon: {
+        flex: 1,
         width: 20,
         height: 20,
         margin: 10,
         marginLeft: 20,
         opacity: 1
-    }
+    },
+    terms: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+    },
+    termsText:{
+        textAlign: 'center',
+    },
+    termsCheckbox: {
+        marginRight: 10,
+    },
 });
