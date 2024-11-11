@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Button, Image, TextInput, TouchableOpacity, TouchableHighlight, TouchableNativeFeedback, TouchableWithoutFeedback, Platform } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function App() {
     const navigation = useNavigation<any>();
+
+    const heartRateData = [80, 82, 78, 85, 83, 90, 87, 88, 84, 85, 83, 86];
 
     return (
         <LinearGradient
@@ -14,64 +16,73 @@ export default function App() {
             end={{ x: 1.0, y: 1.2 }}
             style={styles.container}
         >
-
-            <View style={styles.header}>
-                <Text style={styles.headerText}>MyHealth</Text>
-                <FontAwesome name="bars" size={24} color="black" style={styles.menuIcon} />
-            </View>
-
-            <View style={styles.summary}>
-                <View style={styles.iconRow}>
-                    <FontAwesome name="fire" size={24} color="green" />
-                    <Text style={styles.iconText}>540</Text>
-                    <FontAwesome name="fire" size={24} color="orange" />
-                    <Text style={styles.iconText}>250</Text>
-                    <FontAwesome name="heart" size={24} color="red" />
-                    <Text style={styles.iconText}>83</Text>
+            <ScrollView contentContainerStyle={{ alignItems: 'center', paddingBottom: 20 }}>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>MyHealth</Text>
+                    <FontAwesome name="bars" size={24} color="black" style={styles.menuIcon} />
                 </View>
-            </View>
 
-            <View style={styles.card}>
-                <Text style={styles.cardTitle}>Daily Goals</Text>
-                <View style={styles.progressBarContainer}>
-                    <FontAwesome name="fire" size={20} color="green" />
-                    <View style={styles.progressBar}>
-                        <View style={[styles.progress, { width: '80%', backgroundColor: 'green' }]} />
+                <View style={styles.summary}>
+                    <View style={styles.iconRow}>
+                        <Image style={styles.icon} source={require('../assets/images/steps.png')} />
+                        <Text style={styles.iconText}>540</Text>
+                        <Image style={styles.icon} source={require('../assets/images/burn.png')} />
+                        <Text style={styles.iconText}>250</Text>
+                        <Image style={styles.icon} source={require('../assets/images/heart.png')} />
+                        <Text style={styles.iconText}>83</Text>
                     </View>
                 </View>
-                <View style={styles.progressBarContainer}>
-                    <FontAwesome name="fire" size={20} color="orange" />
-                    <View style={styles.progressBar}>
-                        <View style={[styles.progress, { width: '60%', backgroundColor: 'orange' }]} />
+
+                <View style={styles.card}>
+                    <Text style={styles.cardTitle}>Daily Goals</Text>
+                    <View style={styles.progressBarContainer}>
+                        <Image style={styles.icon} source={require('../assets/images/steps.png')} />
+                        <View style={styles.progressBar}>
+                            <View style={[styles.progress, { width: '80%', backgroundColor: 'green' }]} />
+                        </View>
+                    </View>
+                    <View style={styles.progressBarContainer}>
+                        <Image style={styles.icon} source={require('../assets/images/burn.png')} />
+                        <View style={styles.progressBar}>
+                            <View style={[styles.progress, { width: '60%', backgroundColor: 'orange' }]} />
+                        </View>
+                    </View>
+                    <View style={styles.progressBarContainer}>
+                        <Image style={styles.icon} source={require('../assets/images/run.png')} />
+                        <View style={styles.progressBar}>
+                            <View style={[styles.progress, { width: '40%', backgroundColor: 'blue' }]} />
+                        </View>
                     </View>
                 </View>
-                <View style={styles.progressBarContainer}>
-                    <FontAwesome name="bicycle" size={20} color="blue" />
-                    <View style={styles.progressBar}>
-                        <View style={[styles.progress, { width: '40%', backgroundColor: 'blue' }]} />
+
+                <View style={styles.card}>
+                    <Text style={styles.cardTitle}>Records</Text>
+                    <View style={styles.recordRow}>
+                        <Text style={styles.recordData}>Cycling</Text>
+                        <Text style={styles.recordTime}>1:20:25</Text>
+                    </View>
+                    <View style={styles.recordRow}>
+                        <Text style={styles.recordData}>Swimming</Text>
+                        <Text style={styles.recordTime}>0:45:12</Text>
                     </View>
                 </View>
-            </View>
 
-            <View style={styles.card}>
-                <Text style={styles.cardTitle}>Records</Text>
-                <View style={styles.recordRow}>
-                    <Text>Cycling</Text>
-                    <Text style={styles.recordTime}>1:20:25</Text>
+                <View style={styles.card}>
+                    <Text style={styles.cardTitle}>Reminder</Text>
+                    <Text style={styles.reminderText}>Pill time in 3 Hours</Text>
+                    <TouchableOpacity style={styles.reminderButton}>
+                        <Text style={styles.buttonText}>Add Reminder</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.recordRow}>
-                    <Text>Swimming</Text>
-                    <Text style={styles.recordTime}>0:45:12</Text>
-                </View>
-            </View>
 
-            <View style={styles.card}>
-                <Text style={styles.cardTitle}>Reminder</Text>
-                <Text style={styles.reminderText}>Pill time in 3 Hours</Text>
-                <TouchableOpacity style={styles.reminderButton}>
-                    <Text style={styles.buttonText}>Add Reminder</Text>
-                </TouchableOpacity>
-            </View>
+                <View style={styles.card}>
+                    <Text style={styles.cardTitle}>Activities</Text>
+                    <Text style={styles.reminderText}>Go for a 30-minute walk</Text>
+                    <TouchableOpacity style={styles.reminderButton}>
+                        <Text style={styles.buttonText}>Start Activity</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
         </LinearGradient>
     );
 }
@@ -90,11 +101,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     headerText: {
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold',
     },
     menuIcon: {
-        padding: 10,
+        padding: 20,
+    },
+    icon: {
+        width: 40,
+        height: 40,
     },
     summary: {
         width: '90%',
@@ -108,8 +123,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     iconText: {
-        fontSize: 18,
+        fontSize: 23,
         marginHorizontal: 5,
+        marginVertical: 5,
+        
     },
     card: {
         width: '90%',
@@ -119,7 +136,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     cardTitle: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
         marginBottom: 10,
     },
@@ -129,7 +146,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     progressBar: {
-        height: 10,
+        height: 20,
         width: '80%',
         backgroundColor: '#d3d3d3',
         borderRadius: 5,
@@ -146,9 +163,13 @@ const styles = StyleSheet.create({
     },
     recordTime: {
         color: 'red',
+        fontSize: 18,
+    },
+    recordData: {
+        fontSize: 18,
     },
     reminderText: {
-        fontSize: 16,
+        fontSize: 18,
         marginBottom: 10,
     },
     reminderButton: {
