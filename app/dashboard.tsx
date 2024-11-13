@@ -7,8 +7,6 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function App() {
     const navigation = useNavigation<any>();
 
-    const heartRateData = [80, 82, 78, 85, 83, 90, 87, 88, 84, 85, 83, 86];
-
     return (
         <LinearGradient
             colors={['rgba(217, 217, 217, 0)', 'rgba(54, 178, 178, 0.78)']}
@@ -78,7 +76,7 @@ export default function App() {
                 <View style={styles.card}>
                     <Text style={styles.cardTitle}>Activities</Text>
                     <Text style={styles.reminderText}>Go for a 30-minute walk</Text>
-                    <TouchableOpacity style={styles.reminderButton}>
+                    <TouchableOpacity style={styles.activityButton}>
                         <Text style={styles.buttonText}>Start Activity</Text>
                     </TouchableOpacity>
                 </View>
@@ -175,12 +173,19 @@ const styles = StyleSheet.create({
     reminderButton: {
         backgroundColor: '#1e90ff',
         paddingVertical: 10,
-        borderRadius: 5,
+        borderRadius: 20,
+        alignItems: 'center',
+    },
+    activityButton: {
+        backgroundColor: '#1e90ff',
+        paddingVertical: 10,
+        borderRadius: 20,
         alignItems: 'center',
     },
     buttonText: {
         color: '#fff',
         fontWeight: 'bold',
+        
     },
 
 });
